@@ -1,0 +1,9 @@
+
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css";
+/*@import "../../node_modules/bulma/css/bulma.css";*/
+
+body {
+  padding: 10px;
+  background: rgb(226, 238, 238);
+}
+

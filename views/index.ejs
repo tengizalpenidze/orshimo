@@ -1,0 +1,68 @@
+<% include navbar %>
+<section class="hero is-small">
+    <div class="hero-body">
+      <div class="container has-text-centered">
+        <p class="title">
+          Exclusive services and offers
+        </p>
+        <p class="subtitle">
+          Please contact your host directly if you are interested in any of the offers / services below
+        </p>
+      </div>
+    </div>
+  </section>
+<br>
+  <section class="container">
+    
+    <% packages.forEach((package , index)=> {
+        if( (index)%3 == 0){  %>
+        <div class="columns features">
+            <% }%>
+    
+                <div class="column is-4 modal-button" data-target="modal-card">
+                    <div class="card is-shady">
+                        <div class="card-image">
+                            <figure class="image is-4by3">
+                                <img src="<%= '../'+package.packageCoverPhoto %>" alt="Placeholder image">
+                            </figure>
+                        </div>
+                        <div class="card-content">
+                            <div class="content">
+                                <h4>
+                                    <%= package.packageName %>
+                                </h4>
+                                <p>
+                                    <%= package.generalDescription %>
+                                </p>
+                                <a href='package/<%= package.id %>'><span class="button is-link modal-button">View more</span></a>
+                                <a href='package/edit/<%= package.id %>'><span class="button is-link is-warning" package-id="<%= package.id %>" >Edit</span></a>
+                                <span class="button delete-button is-link is-danger" package-id="<%= package.id %>" >delete</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+        <% if( (index+1)%3 == 0){ %>
+            </div> 
+        <% }%>
+    
+     <% }); %>
+
+  </section>
+</body>
+<script>
+$('.delete-button').click(function(){
+  let packageId = $(this).attr('package-id');
+  console.log(packageId);
+
+  $.ajax({
+        url: "/package/delete",
+        data: {packageId: packageId},
+        method: 'post',
+        success: function (result, status, xhr) {
+          location.reload();
+        }
+    });
+
+})  
+</script>
