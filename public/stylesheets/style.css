@@ -7,3 +7,9 @@ body {
   background: rgb(226, 238, 238);
 }
 
+.navbar {
+  background-color: transparent;
+  min-height: 3.25rem;
+  position: relative;
+  z-index: 30;
+}

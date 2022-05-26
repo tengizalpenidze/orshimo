@@ -11,7 +11,10 @@ exports.package_add_get = async function(req, res) {
 };
 
 exports.get_package_details = async function(req, res) {
-    res.render('package_details', {packageId : req.params.packageId});
+    let package = await Package.findByPk(parseInt(req.params.packageId));
+    console.log(req.params.packageId);
+
+    res.render('package_details', {package: package});
 };
 
 exports.edit_package_get = async function(req, res) {
@@ -69,8 +72,4 @@ exports.package_add_post = async function(req, res) {
 exports.get_all_packages = async function(req, res, next) { 
     res.locals.packages = await Package.findAll();
     next();
-}
-
-exports.package_details = function(req, res, next) { 
-    res.render('package_details');
 }

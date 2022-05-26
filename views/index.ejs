@@ -22,9 +22,13 @@
                 <div class="column is-4 modal-button" data-target="modal-card">
                     <div class="card is-shady">
                         <div class="card-image">
+                          
                             <figure class="image is-4by3">
                                 <img src="<%= '../'+package.packageCoverPhoto %>" alt="Placeholder image">
                             </figure>
+                        </div>
+                        <div class="card-content is-overlay">
+                          <span class="tag is-info is-medium is-pulled-right"><%= package.pricePerPerson %> GEL</span>
                         </div>
                         <div class="card-content">
                             <div class="content">
