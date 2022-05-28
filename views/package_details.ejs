@@ -4,7 +4,7 @@
     <section class="hero is-info is-medium is-bold">
         <div class="hero-body" style='background-image: url("<%= `../`+package.packageCoverPhoto %>")'>
             <div class="container has-text-centered" >
-                <h1 class="title"><%= package.packageName %></h1>
+                <h1 class="title"><%= t('title_of_package_details', {'package_name': package.packageName}) %></h1>
             </div>
         </div>
     </section>

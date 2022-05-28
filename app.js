@@ -4,8 +4,23 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan'); 
 var userModel = require('./models/user');
+var sequelize = require('./db/db-connect');
+const i18next = require ('i18next');
+const Backend = require ('i18next-fs-backend');
+const i18nextMiddleware = require('i18next-http-middleware');
 
-var sequelize = require('./db/db-connect');;
+i18next.use(Backend).use(i18nextMiddleware.LanguageDetector)
+  .init({
+    fallbackLng: 'en',
+    preload: ['en', 'ru'],
+    backend: {
+      loadPath : './locales/{{lng}}/translation.json'
+    },
+    detection: {
+      order: ['querystring', 'cookie'],
+      caches: ['cookie']
+      }
+  });
 
 //====passport files ===\\
 var session = require('express-session');
@@ -21,6 +36,9 @@ var packageRouter = require('./routes/package');
 
 var app = express();
 
+app.use(i18nextMiddleware.handle(i18next,{
+  removeLngFromUrl: false
+}));
 
 app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:true})); // session secret
  
