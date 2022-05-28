@@ -1,3 +1,4 @@
+require('dotenv').config();
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -8,6 +9,7 @@ var sequelize = require('./db/db-connect');
 const i18next = require ('i18next');
 const Backend = require ('i18next-fs-backend');
 const i18nextMiddleware = require('i18next-http-middleware');
+
 
 i18next.use(Backend).use(i18nextMiddleware.LanguageDetector)
   .init({
