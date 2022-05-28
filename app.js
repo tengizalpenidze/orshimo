@@ -13,7 +13,7 @@ const i18nextMiddleware = require('i18next-http-middleware');
 i18next.use(Backend).use(i18nextMiddleware.LanguageDetector)
   .init({
     fallbackLng: 'en',
-    preload: ['en', 'ru'],
+    preload: ['en', 'ru', 'ge'],
     backend: {
       loadPath : './locales/{{lng}}/translation.json'
     },
@@ -92,7 +92,7 @@ app.use(function(err, req, res, next) {
 
 
 async function syncDatabase() {
-  await sequelize.sync();
+  await sequelize.sync({alter: true});
   console.log("All models were synchronized successfully.");
 }
 

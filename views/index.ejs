@@ -3,7 +3,7 @@
     <div class="hero-body">
       <div class="container has-text-centered">
         <p class="title">
-          Exclusive services and offers
+          <%= t('Exclusive services and offers') %>
         </p>
         <p class="subtitle">
           <%= t('contact_host_if_interested_in_offer') %>
@@ -38,9 +38,11 @@
                                 <p>
                                     <%= package.generalDescription %>
                                 </p>
-                                <a href='package/<%= package.id %>'><span class="button is-link modal-button">View more</span></a>
+                                <a href='package/<%= package.id %>'><span class="button is-link modal-button is-success"><%= t('View more') %></span></a>
+                                <% if (user) {%>
                                 <a href='package/edit/<%= package.id %>'><span class="button is-link is-warning" package-id="<%= package.id %>" >Edit</span></a>
                                 <span class="button delete-button is-link is-danger" package-id="<%= package.id %>" >delete</span>
+                                <% } %>
                             </div>
                         </div>
                     </div>

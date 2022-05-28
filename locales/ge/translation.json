@@ -1,0 +1,9 @@
+{
+    "contact_host_if_interested_in_offer" : "გთხოვთ, დაუკავშირდით თქვენს ეარბიენბი ჰოსტს ქვემოთ ჩამოთვლილი რომელიმე სერვისის დაინტერესების შემთხვევაში",
+    "title_of_package_details" : "მეტი ინფორმაცია: {{package_name}}",
+    "Exclusive services and offers":"ექსკლუზიური სერვისები და შეთავაზებები",
+    "Home": "მთავარი", "Add package": "პაკეტის დამატება", "Language":"ენა", "Sign up" :"რეგისტრაცია", "Log in":"შესვლა",
+    "View more":"დეტალები",
+    "Submit": "დამახსოვრება",
+    "Cancel" : "გაუქმება"
+}

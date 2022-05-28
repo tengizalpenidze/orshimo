@@ -1,80 +1,205 @@
 <% include navbar %>
 <form action = <%= package ? '/package/edit/' + package.id: '/package/add_new_package' %> method="post" 
   <% if(!package){ %> enctype="multipart/form-data"> <% }%>
-<div class="column is-3 is-offset-4 ">
-    <div class="field ">
-        <label class="label">Name</label>
-        <div class="control">
-          <input class="input" type="text" name = "packageName" placeholder="Text input" 
-          value = "<%= package ? package.packageName : '' %>" >
 
+  <div class="columns is-vcentered">
+
+    <div class="column is-one-quarter">
+      <div class="field ">
+          <label class="label">Name</label>
+          <div class="control">
+            <input class="input" type="text" name = "packageName" placeholder="Text input" 
+            value = "<%= package ? package.packageName : '' %>" >
+
+          </div>
         </div>
-      </div>
-        
-      <div class="field">
-        <label class="label">Small description</label>
-        <div class="control ">
-          <input class="input" type="text" placeholder="1-2 sentences" name="generalDescription" 
-          value="<%= package ? package.generalDescription : '' %>">
-         
+          
+        <div class="field">
+          <label class="label">Small description</label>
+          <div class="control ">
+            <input class="input" type="text" placeholder="1-2 sentences" name="generalDescription" 
+            value="<%= package ? package.generalDescription : '' %>">
+          
+          </div>
         </div>
-      </div>
 
-      <div class="field">
-        <label class="label">Duration in hours</label>
-        <div class="control ">
-          <input class="input" type="text" placeholder="1-2 sentences" name="duration" 
-          value="<%= package ? package.duration : '' %>">
+        <div class="field">
+          <label class="label">Duration in hours</label>
+          <div class="control ">
+            <input class="input" type="text" placeholder="1-2 sentences" name="duration" 
+            value="<%= package ? package.duration : '' %>">
+          </div>
         </div>
-      </div>
 
 
-      <div class="text">
-        <label class="label">Detailed description</label>
-        <div class="control ">
-          <textarea class="textarea" type="text" placeholder="Full description" name="detailedDescription" 
-          value="<%= package ? package.detailedDescription : '' %>"></textarea>
+        <div class="text">
+          <label class="label">Detailed description</label>
+          <div class="control ">
+            <textarea class="textarea" type="text" placeholder="Full description" name="detailedDescription" 
+            value="<%= package ? package.detailedDescription : '' %>"></textarea>
+          </div>
         </div>
-      </div>
 
 
-      <div class="field">
-        <label class="label">Price per person</label>
-        <div class="control ">
-          <input class="input" type="text" placeholder="Price in GEL" name="pricePerPerson" value="<%= package ? package.pricePerPerson : '' %>">
+        <div class="field">
+          <label class="label">Price per person</label>
+          <div class="control ">
+            <input class="input" type="text" placeholder="Price in GEL" name="pricePerPerson" value="<%= package ? package.pricePerPerson : '' %>">
+          </div>
         </div>
-      </div>
 
-<% if(!package){ %>
-      <div class="file is-normal has-name">
-        <label class="file-label">
-          <input class="file-input" type="file" name="packageCoverPhoto">
-          <span class="file-cta">
-            <span class="file-icon">
-              <i class="fas fa-upload"></i>
+  <% if(!package){ %>
+        <div class="file is-normal has-name">
+          <label class="file-label">
+            <input class="file-input" type="file" name="packageCoverPhoto">
+            <span class="file-cta">
+              <span class="file-icon">
+                <i class="fas fa-upload"></i>
+              </span>
+              <span class="file-label">
+                Choose file
+              </span>
             </span>
-            <span class="file-label">
-              Choose file
+            <span class="file-name">
+              Upload cover photo
             </span>
-          </span>
-          <span class="file-name">
-            Upload cover photo
-          </span>
-        </label>
-      </div>
-<% } %>
+          </label>
+        </div>
+  <% } %>
+  <br><br><br>
+    </div>
+    
+    <div class="column is-one-quarter RU">
+        <div class="field ">
+            <label class="label">Name [Russian]</label>
+            <div class="control">
+              <input class="input" type="text" name = "packageNameRU" placeholder="Text input" 
+              value = "<%= package ? package.packageNameRU : '' %>" >
 
-<br>
-      
-      <div class="field is-grouped">
-        <div class="control">
-          <button class="button is-link"  type="submit">Submit</button>
-        </div>
-        <div class="control">
-          <button class="button is-link is-light">Cancel</button>
-        </div>
+            </div>
+          </div>
+            
+          <div class="field">
+            <label class="label">Small description [RUSSIAN]</label>
+            <div class="control ">
+              <input class="input" type="text" placeholder="1-2 sentences" name="generalDescriptionRU" 
+              value="<%= package ? package.generalDescriptionRU : '' %>">
+            
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Duration in hours</label>
+            <div class="control ">
+              <input class="input" type="text" placeholder="1-2 sentences" name="durationRU" 
+              value="<%= package ? package.durationRU : '' %>">
+            </div>
+          </div>
+
+
+          <div class="text">
+            <label class="label">Detailed description [RUSSIAN]</label>
+            <div class="control ">
+              <textarea class="textarea" type="text" placeholder="Full description" name="detailedDescriptionRU" 
+              value="<%= package ? package.detailedDescriptionRU : '' %>"></textarea>
+            </div>
+          </div>
+
+
+    <% if(!package){ %>
+          <div class="file is-normal has-name">
+            <label class="file-label">
+              <input class="file-input" type="file" name="packageCoverPhoto2">
+              <span class="file-cta">
+                <span class="file-icon">
+                  <i class="fas fa-upload"></i>
+                </span>
+                <span class="file-label">
+                  Choose file 2
+                </span>
+              </span>
+              <span class="file-name">
+                Upload cover photo 2
+              </span>
+            </label>
+          </div>
+    <% } %>
+
+    <br>
+          
+          <div class="field is-grouped">
+            <div class="control">
+              <button class="button is-link"  type="submit"><%= t('Submit') %></button>
+            </div>
+            <div class="control">
+              <button class="button is-link is-light"><%= t('Cancel') %></button>
+            </div>
+          </div>
       </div>
-   </div>
+
+      <div class="column is-one-quarter GE">
+        <div class="field ">
+            <label class="label">Name [Georgian]</label>
+            <div class="control">
+              <input class="input" type="text" name = "packageNameGE" placeholder="Text input" 
+              value = "<%= package ? package.packageNameGE : '' %>" >
+
+            </div>
+          </div>
+            
+          <div class="field">
+            <label class="label">Small description [Georgian]</label>
+            <div class="control ">
+              <input class="input" type="text" placeholder="1-2 sentences" name="generalDescriptionGE" 
+              value="<%= package ? package.generalDescriptionGE : '' %>">
+            
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Duration in hours [Georgian]</label>
+            <div class="control ">
+              <input class="input" type="text" placeholder="1-2 sentences" name="durationGE" 
+              value="<%= package ? package.durationGE : '' %>">
+            </div>
+          </div>
+
+
+          <div class="text">
+            <label class="label">Detailed description [Georgian]</label>
+            <div class="control ">
+              <textarea class="textarea" type="text" placeholder="Full description" name="detailedDescriptionGE" 
+              value="<%= package ? package.detailedDescriptionGE : '' %>"></textarea>
+            </div>
+          </div>
+
+
+
+
+    <% if(!package){ %>
+          <div class="file is-normal has-name">
+            <label class="file-label">
+              <input class="file-input" type="file" name="packageCoverPhoto3">
+              <span class="file-cta">
+                <span class="file-icon">
+                  <i class="fas fa-upload"></i>
+                </span>
+                <span class="file-label">
+                  Choose file 3
+                </span>
+              </span>
+              <span class="file-name">
+                Upload cover photo 3
+              </span>
+            </label>
+          </div>
+    <% } %>
+    <br><br><br>
+      </div>
+    
+
+</div>
+
   </form>
 </body>
 

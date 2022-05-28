@@ -70,6 +70,10 @@ exports.package_add_post = async function(req, res) {
 
 
 exports.get_all_packages = async function(req, res, next) { 
+    try{
     res.locals.packages = await Package.findAll();
     next();
+    } catch(err){
+        console.log(err);
+    }
 }

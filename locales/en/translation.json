@@ -1,4 +1,7 @@
 {
     "contact_host_if_interested_in_offer" : "Please contact your host directly if you are interested in any of the offers / services below.",
-    "title_of_package_details" : "Details about {{package_name}}"
+    "title_of_package_details" : "Details about {{package_name}}",
+    "Exclusive services and offers":"Exclusive services and offers",
+    "Submit": "Submit", "Cancel" : "Cancel", "Home": "Home", "Add package": "Add package", "Language":"Language", 
+    "View more":"View more", "Sign up" :"Sign up", "Log in":"Log in"
 }

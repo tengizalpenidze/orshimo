@@ -1,4 +1,7 @@
 {
     "contact_host_if_interested_in_offer" : "Пожалуйста, свяжитесь с вашим хостом напрямую, если вы заинтересованы в любом из предложений / услуг ниже.",
-    "title_of_package_details" : "Подробности о {{package_name}}"
+    "title_of_package_details" : "Подробности о {{package_name}}",
+    "Exclusive services and offers":"Эксклюзивные услуги и предложения",
+    "Submit": "Сохранять", "Cancel" : "Отмена", "Home": "Главная страница", "Add package": "Добавить пакет", "Language":"Язык", 
+    "View more":"Посмотреть детали", "Sign up" :"Регистрация", "Log in":"Авторизоваться"
 }
