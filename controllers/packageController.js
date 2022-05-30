@@ -48,20 +48,24 @@ exports.package_delete_post = async function(req, res) {
 
 exports.package_add_post = async function(req, res) {
     let package = Package.build(req.body);
-    const newPath = `public/images/uploads/`+ req.file.originalname;
-    
-    package.set({
-        packageCoverPhoto: `images/uploads/`+ req.file.originalname
-    });
 
-    if (!req.file) {
-        res.status(401).json({error: 'Please provide an image'});
+
+
+    for (let i=0; i<req.files.length; i++){
+        const newPath = `public/images/uploads/`+ Date.now() + req.files[i].originalname;
+        if (i==0) package.set({packageCoverPhoto: `images/uploads/`+ Date.now() + req.files[i].originalname});
+        if (i==1) package.set({packageCoverPhoto2: `images/uploads/`+ Date.now() + req.files[i].originalname});
+        if (i==2) package.set({packageCoverPhoto3: `images/uploads/`+ Date.now() + req.files[i].originalname});
+
+        if (!req.files) {
+            res.status(401).json({error: 'Please provide an image'});
+        }
+
+        fs.rename(req.files[i].path, newPath, (err)=>{
+            if(err) throw err;
+            
+       });
     }
-
-   fs.rename(req.file.path, newPath, (err)=>{
-        if(err) throw err;
-        
-   });
 
     await package.save();
     res.redirect('/');

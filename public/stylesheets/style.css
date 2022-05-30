@@ -13,3 +13,14 @@ body {
   position: relative;
   z-index: 30;
 }
+
+@media screen and (max-width: 1024px) {
+  .navbar-dropdown .is-active {
+    display: block;
+  }
+  .navbar-dropdown:not(.is-active) {
+    display: none;
+  }
+}
+
+

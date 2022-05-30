@@ -11,6 +11,8 @@
         <span aria-hidden="true"></span>
       </a>
     </div>
+
+    
   
     <div id="navbarBasicExample" class="navbar-menu">
       <div class="navbar-start">
@@ -23,28 +25,32 @@
         </a>
         <% }%>
         </div>
+
+
+        <div class="navbar-item has-dropdown is-hoverable language-dropdown">
+          <a class="navbar-link">
+            <%= t('Language') %>
+          </a>
+  
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="?lng=en">
+              EN
+            </a>
+            <a class="navbar-item" href="?lng=ge">
+              ქართული
+            </a>
+            <a class="navbar-item" href="?lng=ru">
+              RU
+            </a>
+            </div>
+        </div>
+  
+
       </div>
   
 
 
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          <%= t('Language') %>
-        </a>
-
-        <div class="navbar-dropdown">
-          <a class="navbar-item" href="?lng=en">
-            EN
-          </a>
-          <a class="navbar-item" href="?lng=ge">
-            ქართული
-          </a>
-          <a class="navbar-item" href="?lng=ru">
-            RU
-          </a>
-          </div>
-      </div>
-
+      
 <%/* %>
       <% if (!user) {%>
       <div class="navbar-end">
@@ -84,7 +90,19 @@
   </div>
   <% } %>
 
-        
-
     </div>
   </nav>
+
+  <script>
+$(document).ready(function () {
+    $(".navbar-burger").click(function () {
+        $(".navbar-burger").toggleClass("is-active");
+        $(".navbar-menu").toggleClass("is-active");
+    });
+   // just control the "is-action" class for the drop down menu, and use the above css to control this display
+    $(".navbar-item.has-dropdown")
+        .click(function () {
+            $(this).children(".navbar-dropdown").toggleClass("is-active");
+        });
+});
+  </script>

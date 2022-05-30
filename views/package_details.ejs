@@ -1,13 +1,40 @@
 <% include navbar %>
 
+    <section class="section ">
+			<div class="container">
+				<!-- Start Carousel -->
+				<div id="carousel-demo" class="carousel">
+					<div class="item-1" >
+                        <figure class="image is-3by1 is-covered">
+						    <img src="<%= `../`+package.packageCoverPhoto %>" />
+                        </figure>
+					</div>
 
-    <section class="hero is-info is-medium is-bold">
-        <div class="hero-body" style='background-image: url("<%= `../`+package.packageCoverPhoto %>")'>
-            <div class="container has-text-centered" >
-                <h1 class="title"><%= t('title_of_package_details', {'package_name': package.packageName}) %></h1>
-            </div>
-        </div>
-    </section>
+                    <% if(package.packageCoverPhoto2){ %>
+					<div class="item-2">
+						<figure class="image is-3by1 is-covered">
+                            <img src="<%= `../`+package.packageCoverPhoto2 %>" />
+                        </figure>
+					</div>
+                    <% } else { %>
+                        <div class="item-2">
+                            <figure class="image is-3by1 is-covered">
+                                <img src="<%= `../`+package.packageCoverPhoto %>" />
+                            </figure>
+                        </div>
+                    <% } %>
+
+                    <% if(package.packageCoverPhoto3){ %>
+					<div class="item-3">
+						<figure class="image is-3by1 is-covered">
+                            <img src="<%= `../`+package.packageCoverPhoto3 %>" />
+                        </figure>
+					</div>
+                    <% }%>
+				</div>
+				<!-- End Carousel -->
+			</div>
+		</section>
 
     <div class="container">
         <!-- START ARTICLE FEED -->
@@ -17,53 +44,56 @@
                 <div class="card article">
                     <div class="card-content">
                         <div class="media">
-                            <div class="media-content has-text-centered">
-                                <p class="title article-title"><%= package.generalDescription %></p>
-                            </div>
-                        </div>
-                        <div class="content article-body">
-                            <%= package.detailedDescription %>
-                            <br>
-                            <h3 class="has-text-centered">Agenda and details</h3>
-                            <p> </p>
-
-                        </div>
-                    </div>
-                </div>
-                <!-- END ARTICLE -->
-                <!-- START ARTICLE -->
-                <div class="card article">
-                    <div class="card-content">
-                        <div class="media">
                             <div class="media-center">
-                                <img src="https://res.cloudinary.com/ameo/image/upload/v1639144778/typocat_svbspx.png" class="author-image" alt="Placeholder image">
+                                <figure class="image is-128x128 ">
+                                <img src="<%= `../`+package.packageCoverPhoto %>" class="author-image" alt="Placeholder image">
+                                </figure>
                             </div>
                             <div class="media-content has-text-centered">
-                                <p class="title article-title">Some maerketing text 🔱</p>
+                                <p class="title article-title"><%= package.packageName %></p>
                                 <p class="subtitle is-6 article-subtitle">
-                                    <a href="#"></a>may be date of photo
+                                    <%= package.generalDescription %>
                                 </p>
                             </div>
                         </div>
                         <div class="content article-body">
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Accumsan lacus vel facilisis volutpat est velit egestas. Sapien eget mi proin sed. Sit amet mattis vulputate enim.
-                            </p>
-                            <p>
-                                Commodo ullamcorper a lacus vestibulum sed arcu. Fermentum leo vel orci porta non. Proin fermentum leo vel orci porta non pulvinar. Imperdiet proin fermentum leo vel. Tortor posuere ac ut consequat semper viverra. Vestibulum lectus mauris ultrices eros.
-                            </p>
-                            <h3 class="has-text-centered">Lectus vestibulum mattis ullamcorper velit sed ullamcorper morbi. Cras tincidunt lobortis feugiat vivamus.</h3>
-                            <p>
-                                In eu mi bibendum neque egestas congue quisque egestas diam. Enim nec dui nunc mattis enim ut tellus. Ut morbi tincidunt augue interdum velit euismod in. At in tellus integer feugiat scelerisque varius morbi enim nunc. Vitae suscipit tellus mauris a diam.
-                                Arcu non sodales neque sodales ut etiam sit amet.
-                            </p>
+                            <%= package.detailedDescription %>
                         </div>
                     </div>
                 </div>
                 <!-- END ARTICLE -->
                
         </div>
+        <script src="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.3/dist/js/bulma-carousel.min.js"></script>
+        <script>
+           // Initialize all div with carousel class
+            var carousels = bulmaCarousel.attach('.carousel', {infinite: true});
+
+            // Loop on each carousel initialized
+            for(var i = 0; i < carousels.length; i++) {
+                // Add listener to  event
+                carousels[i].on('before:show', state => {
+                    console.log(state);
+                });
+            }
+
+            // Access to bulmaCarousel instance of an element
+            var element = document.querySelector('#carousel-demo');
+            if (element && element.bulmaCarousel) {
+                // bulmaCarousel instance is available as element.bulmaCarousel
+                element.bulmaCarousel.on('before-show', function(state) {
+                    console.log(state);
+                });
+            }
+            </script>
 
 </body>
 
 </html>
+
+
+
+
+
+
+

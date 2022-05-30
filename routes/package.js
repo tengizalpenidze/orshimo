@@ -17,7 +17,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/add_new_package', packageController.package_add_get);
-router.post('/add_new_package', upload.single('packageCoverPhoto'), packageController.package_add_post);
+router.post('/add_new_package', upload.array('packageCoverPhoto',3), packageController.package_add_post);
 
 router.get('/:packageId', packageController.get_package_details);
 
