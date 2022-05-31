@@ -12,4 +12,9 @@ router.get('/', async function(req, res, next) {
   res.render('index', {path: path, dirname:__dirname});
 });
 
+router.get('/questions', async function(req, res, next) {
+  res.locals.user = req.user
+  res.render('questions');
+});
+
 module.exports = router;

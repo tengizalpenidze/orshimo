@@ -56,8 +56,10 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="content article-body">
+                        <div class="content article-body" style="white-space: pre-line">
+
                             <%= package.detailedDescription %>
+
                         </div>
                     </div>
                 </div>
@@ -85,6 +87,16 @@
                     console.log(state);
                 });
             }
+
+
+            //removes initial line break from the article body
+            document.addEventListener('DOMContentLoaded', function(e){
+            var preElements = document.querySelectorAll('.article-body');
+            
+            Array.prototype.forEach.call(preElements, function( pre ){
+                pre.textContent = pre.textContent.replace(/^\s+/, '');
+            });
+            });
             </script>
 
 <% include footer %>

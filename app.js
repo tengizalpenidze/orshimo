@@ -90,7 +90,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-
 async function syncDatabase() {
   await sequelize.sync({alter: true});
   console.log("All models were synchronized successfully.");
