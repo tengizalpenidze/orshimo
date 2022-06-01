@@ -1,5 +1,4 @@
 <% include navbar %>
-
     <section class="section ">
 			<div class="container">
 				<!-- Start Carousel -->
@@ -50,15 +49,15 @@
                                 </figure>
                             </div>
                             <div class="media-content has-text-centered">
-                                <p class="title article-title"><%= package.packageName %></p>
+                                <p class="title article-title"><%= language =='ru' ? package.packageNameRU : package.packageName %></p>
                                 <p class="subtitle is-6 article-subtitle">
-                                    <%= package.generalDescription %>
+                                    <%= language =='ru' ? package.generalDescriptionRU : package.generalDescription %>
                                 </p>
                             </div>
                         </div>
                         <div class="content article-body" style="white-space: pre-line">
 
-                            <%= package.detailedDescription %>
+                            <%= language =='ru' ? package.detailedDescriptionRU : package.detailedDescription %>
 
                         </div>
                     </div>

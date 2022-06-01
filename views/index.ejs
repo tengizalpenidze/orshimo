@@ -33,10 +33,10 @@
                         <div class="card-content">
                             <div class="content">
                                 <h4>
-                                    <%= package.packageName %>
+                                    <%= language =='ru' ? package.packageNameRU : package.packageName %>
                                 </h4>
                                 <p>
-                                    <%= package.generalDescription %>
+                                    <%= language =='ru' ? package.generalDescriptionRU : package.generalDescription %>
                                 </p>
                                 <a href='package/<%= package.id %>'><span class="button is-link modal-button is-success"><%= t('View more') %></span></a>
                                 <% if (user) {%>
