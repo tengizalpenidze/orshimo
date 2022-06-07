@@ -3,33 +3,14 @@
 			<div class="container">
 				<!-- Start Carousel -->
 				<div id="carousel-demo" class="carousel">
+
+                    <% for (let i =0; i<package.packagePhotos.length; i++) { %> 
 					<div class="item-1" >
                         <figure class="image is-3by1 is-covered">
-						    <img src="<%= `../`+package.packageCoverPhoto %>" />
+						    <img src="<%= `../`+package.packagePhotos[i] %>" />
                         </figure>
 					</div>
-
-                    <% if(package.packageCoverPhoto2){ %>
-					<div class="item-2">
-						<figure class="image is-3by1 is-covered">
-                            <img src="<%= `../`+package.packageCoverPhoto2 %>" />
-                        </figure>
-					</div>
-                    <% } else { %>
-                        <div class="item-2">
-                            <figure class="image is-3by1 is-covered">
-                                <img src="<%= `../`+package.packageCoverPhoto %>" />
-                            </figure>
-                        </div>
-                    <% } %>
-
-                    <% if(package.packageCoverPhoto3){ %>
-					<div class="item-3">
-						<figure class="image is-3by1 is-covered">
-                            <img src="<%= `../`+package.packageCoverPhoto3 %>" />
-                        </figure>
-					</div>
-                    <% }%>
+                    <% } %> 
 				</div>
 				<!-- End Carousel -->
 			</div>
@@ -45,7 +26,7 @@
                         <div class="media">
                             <div class="media-center">
                                 <figure class="image is-128x128 ">
-                                <img src="<%= `../`+package.packageCoverPhoto %>" class="author-image" alt="Placeholder image">
+                                <img src="<%= `../`+package.packagePhotos[0] %>" class="author-image" alt="Placeholder image">
                                 </figure>
                             </div>
                             <div class="media-content has-text-centered">

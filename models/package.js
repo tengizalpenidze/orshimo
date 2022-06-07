@@ -58,16 +58,9 @@ const Package = sequelize.define('Package', {
     type: DataTypes.INTEGER
     // allowNull defaults to true
   },
-  packageCoverPhoto: {
-    type: DataTypes.STRING
-    // allowNull defaults to true
-  },
-  packageCoverPhoto2: {
-    type: DataTypes.STRING
-    // allowNull defaults to true
-  },
-  packageCoverPhoto3: {
-    type: DataTypes.STRING
+
+  packagePhotos: {
+    type: DataTypes.ARRAY(DataTypes.STRING)
     // allowNull defaults to true
   }
 }, {

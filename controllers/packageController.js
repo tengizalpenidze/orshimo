@@ -25,9 +25,8 @@ exports.edit_package_get = async function(req, res) {
 
 exports.edit_package_post = async function(req, res) {
     packageToEdit = await Package.findByPk(parseInt(req.params.packageId));
-    console.log(req.params.packageId);
-    console.log(req.body);
     packageToEdit.set(req.body);
+    if(req.body.pricePerPerson === '') packageToEdit.set({pricePerPerson: null});
     await packageToEdit.save();
     res.redirect('/');
 };
@@ -35,15 +34,14 @@ exports.edit_package_post = async function(req, res) {
 exports.package_delete_post = async function(req, res) {
     console.log(req.body.packageId);
     packageToDelete = await Package.findByPk(parseInt(req.body.packageId));
-    const pathToImage = packageToDelete.packageCoverPhoto;
-    const pathToImage2 = packageToDelete.packageCoverPhoto2 ? path.join(process.cwd(), '/public/'+packageToDelete.packageCoverPhoto2) : null;
-    const pathToImage3 = packageToDelete.packageCoverPhoto3 ? path.join(process.cwd(), '/public/'+packageToDelete.packageCoverPhoto3) : null;
+   
     try{
+        for (let i=0; i< packageToDelete.packagePhotos.length; i++){
+            fs.unlink( path.join(process.cwd(), '/public/'+packageToDelete.packagePhotos[i]),(err)=>{
+                if(err) console.log(err);
+            } );
+        }
         await packageToDelete.destroy();
-        let realPathToImage = path.join(process.cwd(), '/public/'+pathToImage);
-        fs.unlinkSync(realPathToImage);
-        if(pathToImage2) fs.unlinkSync(pathToImage2);
-        if(pathToImage3) fs.unlinkSync(pathToImage3);
     }catch(err){
         console.error(err);
     }
@@ -52,13 +50,15 @@ exports.package_delete_post = async function(req, res) {
 
 exports.package_add_post = async function(req, res) {
     let package = Package.build(req.body);
-
+    if(req.body.pricePerPerson === '') package.set({pricePerPerson: null});
+    
+    
+    let photos = [];
     for (let i=0; i<req.files.length; i++){
+        
         const newPath = `public/images/uploads/`+ Date.now() + req.files[i].originalname;
-        if (i==0) package.set({packageCoverPhoto: `images/uploads/`+ Date.now() + req.files[i].originalname});
-        if (i==1) package.set({packageCoverPhoto2: `images/uploads/`+ Date.now() + req.files[i].originalname});
-        if (i==2) package.set({packageCoverPhoto3: `images/uploads/`+ Date.now() + req.files[i].originalname});
-
+        photos.push( `images/uploads/`+ Date.now() + req.files[i].originalname);
+       
         if (!req.files) {
             res.status(401).json({error: 'Please provide an image'});
         }
@@ -68,11 +68,15 @@ exports.package_add_post = async function(req, res) {
             
        });
     }
+    package.set({packagePhotos: photos});
 
-    package.save();
- 
-    res.redirect('/');
     
+    package.save().then( (result)=>{
+        res.redirect('/');
+    }, (result) => {
+        console.log(result);
+    });
+ 
 };
 
 

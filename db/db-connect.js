@@ -1,9 +1,9 @@
 const { Sequelize, DataTypes } = require('sequelize');
 
 
-const sequelize = new Sequelize('cooking_app', 'sqluser', 'Aa123456', {
+const sequelize = new Sequelize('orshimo', 'sqluser', 'Aa123456', {
   host: '127.0.1',
-  dialect: 'mysql'
+  dialect: 'postgres'
 });
 
 (async()=>{
