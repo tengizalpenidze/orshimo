@@ -22,7 +22,9 @@ router.post('/add_new_package', upload.array('packageCoverPhoto',10), packageCon
 router.get('/:packageId', packageController.get_package_details);
 
 router.get('/edit/:packageId', packageController.edit_package_get);
-router.post('/edit/:packageId', packageController.edit_package_post);
+router.post('/edit/:packageId', upload.array('packageCoverPhoto',10),  packageController.edit_package_post);
 router.post('/delete/', packageController.package_delete_post);
+router.post('/delete_photo_post', packageController.delete_photo_post);
+
 
 module.exports = router;

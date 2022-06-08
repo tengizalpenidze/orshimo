@@ -1,6 +1,6 @@
 <% include navbar %>
 <form action = <%= package ? '/package/edit/' + package.id: '/package/add_new_package' %> method="post" 
-  <% if(!package){ %> enctype="multipart/form-data"> <% }%>
+    enctype="multipart/form-data"> 
 
   <div class="columns is-vcentered">
 
@@ -130,35 +130,72 @@
             </div>
           </div>
 
+          <br>
+          <div class="field is-grouped  ">
+            <div class="control ">
+              <button class="button is-link"  type="submit"><%= t('Submit') %></button>
+              <button class="button is-link is-light"><%= t('Cancel') %></button>
+            </div>
+          </div>
       </div>
-    
-
-</div>
-
-<% if(!package){ %>
-  <span class="file-label">
+      <div class="column is-one-quarter ">
+        <span class="file-label">
           Choose photos 
-  </span>
-  <input class="" type="file" name="packageCoverPhoto">
-  <input class="" type="file" name="packageCoverPhoto">
-  <input class="" type="file" name="packageCoverPhoto">
-  <input class="" type="file" name="packageCoverPhoto">
-  <input class="" type="file" name="packageCoverPhoto">
-  <input class="" type="file" name="packageCoverPhoto">
-  <input class="" type="file" name="packageCoverPhoto">
-  <input class="" type="file" name="packageCoverPhoto">
-  <input class="" type="file" name="packageCoverPhoto">
-<% } %>
+        </span>
+        <input class="" type="file" name="packageCoverPhoto">
+        <input class="" type="file" name="packageCoverPhoto">
+        <input class="" type="file" name="packageCoverPhoto">
+        <input class="" type="file" name="packageCoverPhoto">
+        <input class="" type="file" name="packageCoverPhoto">
+        <input class="" type="file" name="packageCoverPhoto">
+        <input class="" type="file" name="packageCoverPhoto">
+        <input class="" type="file" name="packageCoverPhoto">
+        <input class="" type="file" name="packageCoverPhoto">
 
-<div class="field is-grouped columns is-vcentered">
-  <div class="control column is-8">
-    
-  </div>
-  <div class="control column">
-    <button class="button is-link"  type="submit"><%= t('Submit') %></button>
-    <button class="button is-link is-light"><%= t('Cancel') %></button>
-  </div>
+        </form>
+      </div>
 </div>
 
-  </form>
+<% if (package){
+  package.packagePhotos.forEach((packagePhoto, index) =>{
+%>
+<div class="media-center" id="div-<%= index %>">
+  <figure class="image is-128x128 ">
+  <img src="/<%= packagePhoto %>" class="author-image" alt="Placeholder image">
+  <button class="delete-photo" packageId = "<%= package.id %>"  photoIndex="<%= index %>">Delete</button>
+  </figure>
+</div>
+
+<%
+});
+} %> 
+
+
+
+  <script>
+    $(".delete-photo").click(function(){
+      var buttonClicked = $(this);
+      var indexOfPhoto = $(this).attr('photoIndex');
+      var packageId = $(this).attr('packageId');
+      console.log(indexOfPhoto +" --- " + packageId);
+      console.log("#div-"+indexOfPhoto);
+      console.log($("#div-"+indexOfPhoto));
+      
+          $.ajax({
+            type: "POST",
+            url: '/package/delete_photo_post',
+            data: {indexOfPhoto: indexOfPhoto, packageId : packageId},
+            success: function(success){
+              $("#div-"+indexOfPhoto).remove();
+                console.log("movedii");
+            },
+            error: function(err){
+                console.log(err);
+            }
+          })
+
+    });
+      
+    </script>
+
   <% include footer %>

@@ -10,6 +10,7 @@ const Backend = require ('i18next-fs-backend');
 const i18nextMiddleware = require('i18next-http-middleware');
 
 
+
 i18next.use(Backend).use(i18nextMiddleware.LanguageDetector)
   .init({
     fallbackLng: 'en',
@@ -96,5 +97,8 @@ async function syncDatabase() {
 }
 
 syncDatabase();
+
+
+
 
 module.exports = app;

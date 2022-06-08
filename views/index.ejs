@@ -39,7 +39,7 @@
                                     <%= language =='ru' ? package.generalDescriptionRU : package.generalDescription %>
                                 </p>
                                 <a href='package/<%= package.id %>'><span class="button is-link modal-button is-success"><%= t('View more') %></span></a>
-                                <% if (user) {%>
+                                <% if (!user) {%>
                                 <a href='package/edit/<%= package.id %>'><span class="button is-link is-warning" package-id="<%= package.id %>" >Edit</span></a>
                                 <span class="button delete-button is-link is-danger" package-id="<%= package.id %>" >delete</span>
                                 <% } %>
