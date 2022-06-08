@@ -49,6 +49,9 @@
         <script src="https://cdn.jsdelivr.net/npm/bulma-carousel@4.0.3/dist/js/bulma-carousel.min.js"></script>
         <script>
            // Initialize all div with carousel class
+            mixpanel.track('Package details visited', {
+                'Package name': $('.article-title').text(),
+            });
             var carousels = bulmaCarousel.attach('.carousel', {infinite: true});
 
             // Loop on each carousel initialized
